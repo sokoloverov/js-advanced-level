@@ -191,11 +191,12 @@ $main-width: 1100px;
 }
 .goods_cart {
     display: none;
+    flex-direction: column;
     position: absolute;
-    margin-top: 198px;
-    width: 100%;
+    margin-top: 158px;
+    width: 95%;
     justify-content: center;
-    //cursor: url(img/mouse.png), pointer;
+    margin-left: 6px;
 }
 .goods_cart_a {
     display: flex;
@@ -206,6 +207,7 @@ $main-width: 1100px;
     font-weight: 700;
     align-items: center;
     text-decoration: none;
+    box-shadow: 0 0 10px #ffffff;
 }
 .goods_cart_right {
     margin-right: 12px;
@@ -225,8 +227,10 @@ $main-width: 1100px;
 .goods_box:hover .goods_cart {
     display: flex;
 }
-.goods_cart_a:hover {
+.goods_cart__btn:hover {
     box-shadow: 0 0 10px #ffffff;
+    background-color: #7a7a7a;
+    animation: color-change-2x 1s linear infinite alternate both;
 }
 .goods_box_upper_font {
     font-family: "Neucha";
@@ -249,8 +253,30 @@ $main-width: 1100px;
     margin-bottom: 11px;
     padding-left: 17px;
 }
+.goods_cart__btnBox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.goods_cart__btn {
+    cursor: pointer;
+    padding: 6px;
+    width: 40%;
+}
+.goods_cart__quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    min-width: 9%;
+    background-color: #f3efef;
+    box-shadow: 0 0 10px #ffffff;
+}
 
 /*ВИТРИНА КОРЗИНЫ*/
+.invisible {
+    display: none;
+}
 .itemCartContainer {
     display: flex;
     flex-direction: column;

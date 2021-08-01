@@ -238,8 +238,6 @@
   width: 65px;
   text-align: center;
   padding: 5px;
-  -webkit-animation: slide-out-bck-center 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-          animation: slide-out-bck-center 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
 /*СТРОКА ПОИСКА*/
@@ -301,12 +299,17 @@
 
 .goods_cart {
   display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
-  margin-top: 198px;
-  width: 100%;
+  margin-top: 158px;
+  width: 95%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-left: 6px;
 }
 
 .goods_cart_a {
@@ -322,6 +325,8 @@
       -ms-flex-align: center;
           align-items: center;
   text-decoration: none;
+  -webkit-box-shadow: 0 0 10px #ffffff;
+          box-shadow: 0 0 10px #ffffff;
 }
 
 .goods_cart_right {
@@ -352,9 +357,12 @@
   display: flex;
 }
 
-.goods_cart_a:hover {
+.goods_cart__btn:hover {
   -webkit-box-shadow: 0 0 10px #ffffff;
           box-shadow: 0 0 10px #ffffff;
+  background-color: #7a7a7a;
+  -webkit-animation: color-change-2x 1s linear infinite alternate both;
+          animation: color-change-2x 1s linear infinite alternate both;
 }
 
 .goods_box_upper_font {
@@ -380,7 +388,44 @@
   padding-left: 17px;
 }
 
-/*Витрина корзины*/
+.goods_cart__btnBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.goods_cart__btn {
+  cursor: pointer;
+  padding: 6px;
+  width: 40%;
+}
+
+.goods_cart__quantity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+  min-width: 9%;
+  background-color: #f3efef;
+  -webkit-box-shadow: 0 0 10px #ffffff;
+          box-shadow: 0 0 10px #ffffff;
+}
+
+/*ВИТРИНА КОРЗИНЫ*/
+.invisible {
+  display: none;
+}
+
 .itemCartContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -420,7 +465,7 @@
           align-items: center;
 }
 
-/*Форма данных*/
+/*ФОРМА ДАННЫХ*/
 .formUsers {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -436,7 +481,7 @@
   background-color: #e9cfcf;
 }
 
-/*Футтер самый низ*/
+/*ФУТТЕР*/
 .footer_lower_box {
   background-color: #141313;
   margin-top: 20px;

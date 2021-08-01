@@ -20,21 +20,34 @@ class ProductUnit {
         if (this.title === undefined) this.title = 'Ожидаем...';
         if (this.picture === undefined) this.picture = 'waiting.png';
 
-        return `<div class="goods_box">
-        <a href="#">
-            <figure>
-                <img class="goods_box__img" src="${this.picture}" alt="Товар">
-                <figcaption class="goods_box_upper_font">${this.title}</figcaption>
-                <figcaption class="goods_box_lower_font">${this.price} ментальных усилий</figcaption>
-            </figure>
-        </a>
-        <div class="goods_cart" id="${this.id}+">
-            <a href="#" class="goods_cart_a">
-                <img src="img/luzifers_korb.png" alt="Корзина" class="goods_cart_right">
-                <p class="goods_cart_text">В список желаний</p>
-            </a>
-        </div>
-    </div>`;
+        if (this.title === 'Ожидаем...') {
+            return `<div class="goods_box">
+                        <figure>
+                            <img class="goods_box__img" src="${this.picture}" alt="Товар">
+                            <figcaption class="goods_box_upper_font">${this.title}</figcaption>
+                            <figcaption class="goods_box_lower_font">${this.price} ментальных усилий</figcaption>
+                        </figure>
+                    </div>`
+        } else {
+            return `<div class="goods_box">
+                        <figure>
+                            <img class="goods_box__img" src="${this.picture}" alt="Товар">
+                            <figcaption class="goods_box_upper_font">${this.title}</figcaption>
+                            <figcaption class="goods_box_lower_font">${this.price} ментальных усилий</figcaption>
+                        </figure>
+                        <div class="goods_cart" id="${this.id}">
+                            <div class="goods_cart_a">
+                                <img src="img/luzifers_korb.png" alt="Корзина" class="goods_cart_right">
+                                <p class="goods_cart_text">В список желаний</p>
+                            </div>
+                            <div class="goods_cart__btnBox">
+                                <button type="button" class="goods_cart__btn" id="${this.id}+">Добавить</button>
+                                <p class="goods_cart__quantity">0</p>
+                                <button type="button" class="goods_cart__btn" id="${this.id}-">Убрать</button>
+                            </div>
+                        </div>
+                    </div>`;
+        }
     }
 }
 
