@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop AlexMozg</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 100% высоты -->
+        <div class="height100">
+            <div class="top">
+                <!-- Шапка заголовка -->
+                <div class="pageContainer">
+                    <header class="banner">
+                        <img src="img/sky.png" alt="Фоновый слайд" class="banner__slider">
+                        <div class="banner__uponIt">
+                            <div class="slider_text">
+                                <p class="slider_upper_text">Лавка</p>
+                                <p class="slider_lower_text">фауста & <span class="slider_word">люцифера</span></p>
+                            </div>
+                            <!-- Cart-->
+                            <div class="cart-button">
+                                <a href="#" class="header_cart" @click="showCheckout">
+                                    <img src="img/luzifers_korb.png" alt="Корзина" class="cart-button__size">
+                                    <p class="numbers">{{quantityGoodsInCart}}</p>
+                                </a>
+                                <p class="header_cart_font" v-show="$root.showProduct">Нажав трезубец вы поймете, что в
+                                    кладовой у вас в зачете
+                                </p>
+                                <p class="header_cart_font" v-show="!$root.showProduct">Трезубец снова нажимаем и...
+                                    снова в лавку попадаем</p>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Строка поиска-->
+                    <searchline ref="searchline"></searchline>
+                    <thisiserror ref="thisiserror"></thisiserror>
+                    <main>
+                        <cart ref="cart"></cart>
+                        <products ref="products"></products>
+                    </main>
+                </div>
+            </div>
+            <!-- Футтер -->
+            <footer>
+                <div class="footer_lower_box pageContainer footer_lower_container">
+                    <p class="copyright">&copy; Fausts und Luzifers Laden 2021 All Rights Reserved</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="js/scriptL7error.js"></script>
+    <script src="js/scriptL7filter.js"></script>
+    <script src="js/scriptL7CartComp.js"></script>
+    <script src="js/scriptL7ProductComp.js"></script>
+    <script src="js/scriptL7main.js"></script>
+</body>
+
+</html>
