@@ -1,7 +1,6 @@
 Vue.component('products', {
     data() {
         return {
-            catalogUrl: '',
             goods: [], //products:[] у учителя
             localDataGoods: [],//отображение товаров на витрине
         }
@@ -15,13 +14,10 @@ Vue.component('products', {
     mounted() {
         this.$parent.getJSON('/api/products') //запрос удаленных данных с сервера
             .then(data => {
-                for (let el of data) {
-                    this.goods.push(el);
-                    this.localDataGoods.push(el);
-                }
-            });
+                this.goods = data;
+                this.localDataGoods = this.goods;
+            })
     },
-
     template: `
             <div class="goods-list good_box_big" v-show="$root.showProduct">
                 <product v-for="item in localDataGoods" :key="item.id"
@@ -58,5 +54,3 @@ Vue.component('product', {
 });
 
 
-//v-show="$root.$refs.cart.countShow(product)"
-//$root.$refs.cart.count[product.id]

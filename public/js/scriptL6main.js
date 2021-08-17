@@ -6,9 +6,10 @@ const APP = new Vue({
         attention: false,//индикатор ошибки получення данных сервера
     },
     methods: {
-        async getJSON(url) {
+        async getJSON(url) { //преобразование в массив товаров
             try {
                 const result = await fetch(url);
+                this.attention = false;
                 return await result.json();
             } catch (error) {
                 this.attention = true;
@@ -22,7 +23,7 @@ const APP = new Vue({
                 },
                 body: JSON.stringify(data)
             }).then(result => result.json())
-                .catch(() => {
+                .catch(error => {
                     this.attention = true;
                 });
         },
@@ -52,7 +53,7 @@ const APP = new Vue({
         },
         showCheckout() {//показать витрину или корзину
             this.showProduct = this.showProduct ? false : true;
-        }
+        },
     }
 });
 

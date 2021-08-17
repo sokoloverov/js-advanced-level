@@ -2,7 +2,6 @@ Vue.component('cart', {
     data() {
         return {
             layInCart: [],//отображение и массив товаров в корзине
-            count: { quantity: 0 }, //показывает количество каждого СКЮ в корзине
             quantityInCart: 0, //показывает количество всех СКЮ в корзине
         }
     },
@@ -12,36 +11,32 @@ Vue.component('cart', {
             if (find) {
                 this.$parent.putJson(`/api/cart/${find.id}`, { quantity: 1 });
                 find.quantity++;
-                this.count[item.id] = find.quantity; //счетчик на витрине конкретного товара
             } else {
-                let prod = Object.assign(item, { quantity: 1 });
+                let prod = Object.assign({ quantity: 1 }, item);
                 this.$parent.postJson('/api/cart', prod)
                     .then(data => {
                         if (data.result === 1) {
+                            this.layInCart.push(prod);
+                            this.$root.quantityGoodsInCart = this.layInCart.length;
                         }
-                        this.layInCart.push(prod);
-                        this.count[item.id] = 1; //счетчик на витрине конкретного товара начальное значение
-                        this.$root.quantityGoodsInCart = this.layInCart.length;
                     });
             }
         },
         removeFromCart(item) {
             let find = this.layInCart.find(el => el.id === item.id);
             if (find.quantity > 1) {
-                find.quantity--;
-                this.count[item.id] = find.quantity;
                 this.$parent.putJson(`/api/cart/${item.id}`, { quantity: -1 })
                     .then(data => {
                         if (data.result === 1) {
-                            item.quantity--;
+                            find.quantity--;
                         }
                     });
             } else {
                 this.$parent.deleteJson(`/api/cart/${item.id}`)
                     .then(data => {
                         if (data.result === 1) {
-                            this.layInCart.splice(this.layInCart.indexOf(item), 1);
-                            this.count[item.id] = 0;
+                            //console.log('index = ', this.layInCart.indexOf(find), 'item id = ', item.id);
+                            this.layInCart.splice(this.layInCart.indexOf(find), 1);
                             this.$root.quantityGoodsInCart = this.layInCart.length;
                         }
                     });
@@ -57,7 +52,7 @@ Vue.component('cart', {
         }
     },
     mounted() {
-        this.$parent.getJSON('/api/cart') //запрос удаленных данных с сервера
+        this.$parent.getJSON('/api/cart')
             .then(data => {
                 for (let el of data) {
                     this.layInCart.push(el);
@@ -65,7 +60,6 @@ Vue.component('cart', {
                 }
             });
     },
-
     template: `
             <div v-show="!$root.showProduct">
                 <p class="searchLine">Тут в шутку все, а вы всерьез.

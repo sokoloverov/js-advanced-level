@@ -238,7 +238,7 @@
 }
 
 .header_cart::after {
-  content: url(/img/cartlabel.png);
+  content: url(../img/cartlabel.png);
   position: absolute;
   left: 21px;
   top: 3px;
